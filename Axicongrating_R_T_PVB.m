@@ -65,6 +65,13 @@ xaxistype = 0; %0 = lambda; 1 = freq
 %% Parameters of Yb at MP Lab
 %option1
 lambda = linspace(1026,1034,100)*1e-6; %[mm] wavelength)
+d_DG = 9e-3; %[mm] period of grating
+f1 = 35; %[mm] lens focal length
+w0 = 10; %[mm] beam waist
+
+%% Parameters of Yb at MP Lab
+%option2
+lambda = linspace(1026,1034,100)*1e-6; %[mm] wavelength)
 d_DG = 12e-3; %[mm] period of grating
 f1 = 35; %[mm] lens focal length
 w0 = 10; %[mm] beam waist
