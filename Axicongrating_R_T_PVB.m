@@ -3,78 +3,34 @@ clear all
 
 xaxistype = 0; %0 = lambda; 1 = freq
 
-%% Parameters of original concept simulations/superK demo
-% lambda = linspace(900,1200,1000)*1e-6; %[mm] wavelength)
-% lambda_DG = 1064e-6; %[mm] central design wavelength
-% theta_DG = 0.9/180*pi; %diffraction angle of first order for central design wavelength
-% d_DG = lambda_DG/sin(theta_DG); %period of grating
-% f1 = 20; %[mm] lens focal length
-% w0 = 1; %[mm] beam waist
-
-%% Parameters for Matlab testing scaled from OPA1
-% lambda = linspace(545,695,1000)*1e-6; %[mm] wavelength)
-% d_DG = 30e-3; %[mm] period of grating
-% f1 = 25; %[mm] lens focal length
-% w0 = 0.4; %[mm] beam waist
-
-%% Parameters for INL axicon 1 and setup of July 2024 @VOXEL
-% lambda = linspace(790,810,1000)*1e-6; %[mm] wavelength)
-% d_DG = 10e-3; %[mm] period of grating
-% f1 = 75; %[mm] lens focal length
-% w0 = 2.5; %[mm] beam waistclear
-
-%% Parameters for PHAROS
-% lambda = linspace(1020,1040,1000)*1e-6; %[mm] wavelength)
-% d_DG = 9e-3; %[mm] period of grating
-% f1 = 50; %[mm] lens focal length
-% w0 = 2.5; %[mm] beam waistclear
-
-%% Parameters for Yb-laser pulse compressed with n2photonics
-% % lambda = linspace(1010,1050,1000)*1e-6; %[mm] wavelength) 40 fs pulses
-% lambda = linspace(1000,1060,1000)*1e-6; %[mm] wavelength) 25 fs pulses
-% d_DG = 9e-3; %[mm] period of grating
-% f1 = 50; %[mm] lens focal length
-% w0 = 2.5; %[mm] beam waistclear
-
-%% Good parameters for OPA3
-% lambda = linspace(650,950,1000)*1e-6; %[mm] wavelength)
-% d_DG = 40e-3; %[mm] period of grating
-% f1 = 100; %[mm] lens focal length
-% w0 = 3; %[mm] beam waist
-
-%% TEST: Yb with axicon for IMPALA project
-% lambda = linspace(1026,1034,100)*1e-6; %[mm] wavelength)
-% d_DG = 10e-3; %[mm] period of grating
-% f1 = 40; %[mm] lens focal length
-% w0 = 5; %[mm] beam waistclear
-
-
-%% Parameters of Ti:sapphire oscillator (80 MHz rep. rate)
-% lambda = linspace(800,810,1000)*1e-6; %[mm] wavelength)
-% d_DG = 3e-3; %[mm] period of grating
-% f1 = 10; %[mm] lens focal length
-% w0 = 15; %[mm] beam waist
-
 %% Parameters of NOPA at Imperial College
 % lambda = linspace(1250,1350,1000)*1e-6; %[mm] wavelength)
-% d_DG = 26e-3; %[mm] period of grating
+% d_DG = 27e-3; %[mm] period of grating
 % f1 = 75; %[mm] lens focal length
 % w0 = 5; %[mm] beam waist
 
-
-%% Parameters of Yb at MP Lab
+%% Parameters of Yb at INESC MN
 %option1
 lambda = linspace(1026,1034,100)*1e-6; %[mm] wavelength)
 d_DG = 9e-3; %[mm] period of grating
 f1 = 35; %[mm] lens focal length
 w0 = 10; %[mm] beam waist
 
-%% Parameters of Yb at MP Lab
+%% Parameters of Yb at INESC MN
 %option2
-%lambda = linspace(1026,1034,100)*1e-6; %[mm] wavelength)
-%d_DG = 12e-3; %[mm] period of grating
-%f1 = 35; %[mm] lens focal length
-%w0 = 10; %[mm] beam waist
+lambda = linspace(1026,1034,100)*1e-6; %[mm] wavelength)
+d_DG = 12e-3; %[mm] period of grating
+f1 = 35; %[mm] lens focal length
+w0 = 10; %[mm] beam waist
+
+
+%% Parameters of POLIMI
+%option1
+lambda = linspace(515,700,1000)*1e-6; %[mm] wavelength) %550, 780
+d_DG = 27e-3; %[mm] period of grating
+f1 = 150; %[mm] lens focal length 
+w0 = 2; %[mm] beam waist
+
 
 %% Calculation
 
