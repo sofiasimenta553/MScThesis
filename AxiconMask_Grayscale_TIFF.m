@@ -1,33 +1,32 @@
 clear all
 close all
 
-% --- PARÂMETROS DO UTILIZADOR ---
-Wa    = 2000;    % diâmetro do axicon [µm]
-p     = 27;       % período radial do axicon [µm]
-Ngray = 4096;       % níveis de cinzento fisicamente imprimíveis por período
-Delta = 0.4;      % tamanho de pixel [µm/pixel]
-% -------------------------------------------
+% --- USER PARAMETERS ---
+Wa    = 2000;    % axicon diameter [µm]
+p     = 27;      % radial period of the axicon [µm]
+Ngray = 4096;    % physically printable grayscale levels per period
+Delta = 0.4;     % pixel size [µm/pixel]
+% -----------------------
 
-% Grelha da imagem (coordenadas em µm)
-npix = ceil(Wa/Delta);   % número de pixeis por lado
+% Image grid (coordinates in µm)
+npix = ceil(Wa/Delta);   % number of pixels per side
 [xi, yi] = meshgrid( (-(npix-1)/2 : (npix-1)/2) * Delta );
-r = sqrt(xi.^2 + yi.^2); % raio de cada pixel
+r = sqrt(xi.^2 + yi.^2); % radius of each pixel
 
-% Grayscale level em função do raio
+% Grayscale level as a function of radius
+rmod  = mod(r, p);                         % radius folded within one period [0,p[
+level = floor( rmod / (p/Ngray) );         % indices 0 ... Ngray-1
 
-rmod  = mod(r, p);                         % raio "dobrado" dentro de um período [0,p[
-level = floor( rmod / (p/Ngray) );         % índices 0 ... Ngray-1
 % --- INVERT HERE ---
 level = (Ngray-1) - level;
 
-% Fora do axicon (r > Wa/2) → nível 0 (sem dose / mínimo)
+% Outside the axicon (r > Wa/2) → level 0 (no dose / minimum)
 level(r > Wa/2) = 0;
 
-% Mapear níveis para 16 bits (0–65535)
+% Map levels to 16-bit values (0–65535)
 img16 = uint16( level * (65535/(Ngray-1)) );
 
-
-% --- Escrever TIFF 16-bit ---
+% --- Write 16-bit TIFF ---
 t = Tiff('axicon.tif','w');
 tag.ImageLength     = size(img16,1);
 tag.ImageWidth      = size(img16,2);
@@ -36,13 +35,12 @@ tag.BitsPerSample   = 16;
 tag.SamplesPerPixel = 1;
 tag.SampleFormat    = Tiff.SampleFormat.UInt;
 
-% Escala física correcta: pixels por centímetro
+% Correct physical scale: pixels per centimeter
 px_per_cm = 1e4 / Delta;          % 1 cm = 10000 µm
-tag.XResolution   = px_per_cm;
-tag.YResolution   = px_per_cm;
+tag.XResolution    = px_per_cm;
+tag.YResolution    = px_per_cm;
 tag.ResolutionUnit = Tiff.ResolutionUnit.Centimeter;
 
-t.setTag(tag);
 t.setTag(tag);
 t.write(img16);
 t.close();
