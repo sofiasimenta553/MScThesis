@@ -2,7 +2,7 @@ clear all
 close all
 
 % --- PARÂMETROS DO UTILIZADOR ---
-Wa    = 500;    % diâmetro do axicon [µm]
+Wa    = 2000;    % diâmetro do axicon [µm]
 p     = 27;       % período radial do axicon [µm]
 Ngray = 4096;       % níveis de cinzento fisicamente imprimíveis por período
 Delta = 0.4;      % tamanho de pixel [µm/pixel]
@@ -13,8 +13,8 @@ npix = ceil(Wa/Delta);   % número de pixeis por lado
 [xi, yi] = meshgrid( (-(npix-1)/2 : (npix-1)/2) * Delta );
 r = sqrt(xi.^2 + yi.^2); % raio de cada pixel
 
-% Nível de cinzento em função do raio (perfil periódico em r)
-% Cada nível tem largura ≈ p/Ngray = 27/32 ≈ 0.84 µm (~1 pixel)
+% Grayscale level em função do raio
+
 rmod  = mod(r, p);                         % raio "dobrado" dentro de um período [0,p[
 level = floor( rmod / (p/Ngray) );         % índices 0 ... Ngray-1
 % --- INVERT HERE ---
